@@ -637,86 +637,133 @@ export function DataScene() {
 export function WasteFlowDiagram({ t }) {
   return (
     <svg
-      viewBox="0 0 520 380"
+      viewBox="0 0 560 540"
       role="img"
-      aria-label="Diagram of waste flow from Vientiane households to the KM32 landfill"
+      aria-label="Diagram of the waste cycle in Vientiane: households generate waste that is collected unsorted and buried at the KM32 landfill, with recycling shown as the alternative path"
+      fontFamily="Noto Sans"
     >
-      <rect width="520" height="380" fill="#F1F5EF" />
-
-      {/* households */}
-      <g fill="#1E7F39">
-        <rect x="34" y="62" width="38" height="30" />
-        <path d="M28 62 L53 44 L78 62 Z" />
-        <rect x="80" y="72" width="32" height="20" />
-        <path d="M75 72 L96 58 L117 72 Z" />
-      </g>
-      <text x="32" y="116" fontFamily="Noto Sans" fontSize="13" fontWeight="700" fill="#182119">
-        {t('ຄົວເຮືອນ', 'Households')}
-      </text>
-
-      <path
-        d="M122 84 C 186 84, 186 148, 244 158"
-        stroke="#14592A"
-        strokeWidth="3"
-        fill="none"
-        markerEnd="url(#arrowhead)"
-      />
-      <text x="140" y="126" fontFamily="Noto Sans" fontSize="12" fill="#55655A">
-        {t('ເກັບກຳແບບບໍ່ຄັດແຍກ', 'Unsorted collection')}
-      </text>
-
-      {/* truck */}
-      <g transform="translate(244,158)">
-        <rect x="0" y="0" width="50" height="24" fill="#8CC63E" stroke="#14592A" strokeWidth="2" />
-        <rect x="-18" y="7" width="18" height="17" fill="#8CC63E" stroke="#14592A" strokeWidth="2" />
-        <circle cx="-7" cy="28" r="6" fill="#14592A" />
-        <circle cx="33" cy="28" r="6" fill="#14592A" />
-      </g>
-      <text x="230" y="214" fontFamily="Noto Sans" fontSize="13" fontWeight="700" fill="#182119">
-        {t('ລົດເກັບຂີ້ເຫຍື້ອ', 'Collection truck')}
-      </text>
-
-      <path
-        d="M300 176 C 356 176, 356 232, 400 258"
-        stroke="#14592A"
-        strokeWidth="3"
-        fill="none"
-        markerEnd="url(#arrowhead)"
-      />
-
-      {/* landfill */}
-      <g transform="translate(372,252)">
-        <path d="M0 62 L42 0 L104 0 L136 62 Z" fill="#55655A" opacity=".5" />
-        <path d="M16 62 L47 16 L94 16 L114 62 Z" fill="#182119" opacity=".32" />
-      </g>
-      <text x="372" y="338" fontFamily="Noto Sans" fontSize="13" fontWeight="700" fill="#182119">
-        {t('ບ່ອນຖິ້ມ KM32', 'KM32 landfill')}
-      </text>
-
-      {/* the alternative loop we are building */}
-      <path
-        d="M150 96 C 150 250, 150 300, 250 300"
-        stroke="#8CC63E"
-        strokeWidth="3"
-        strokeDasharray="7 6"
-        fill="none"
-        markerEnd="url(#arrowhead-lime)"
-      />
-      <g transform="translate(258,286)">
-        <rect x="0" y="0" width="70" height="30" fill="#8CC63E" />
-        <text x="10" y="20" fontFamily="Noto Sans" fontSize="12" fontWeight="700" fill="#14592A">
-          {t('ໝູນວຽນ', 'Recycle')}
-        </text>
-      </g>
-
       <defs>
+        <linearGradient id="wfLandfill" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#6E7D71" />
+          <stop offset="1" stopColor="#4A5A4C" />
+        </linearGradient>
         <marker id="arrowhead" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
           <path d="M0 0 L9 4.5 L0 9 Z" fill="#14592A" />
         </marker>
         <marker id="arrowhead-lime" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
           <path d="M0 0 L9 4.5 L0 9 Z" fill="#8CC63E" />
         </marker>
+        <filter id="wfShadow" x="-40%" y="-40%" width="180%" height="180%">
+          <feDropShadow dx="0" dy="4" stdDeviation="6" floodColor="#14231a" floodOpacity="0.14" />
+        </filter>
       </defs>
+
+      <rect width="560" height="540" fill="#FFFFFF" />
+
+      {/* center decoration */}
+      <circle cx="280" cy="280" r="150" fill="#8CC63E" opacity="0.05" />
+      <circle cx="280" cy="280" r="96" fill="none" stroke="#8CC63E" strokeWidth="1.5" strokeDasharray="3 6" opacity="0.35" />
+
+      {/* sparkles */}
+      <g fill="#8CC63E" opacity="0.55">
+        <path d="M84 78 l3 8 8 3 -8 3 -3 8 -3 -8 -8 -3 8 -3 Z" />
+        <path d="M478 96 l2.5 6.5 6.5 2.5 -6.5 2.5 -2.5 6.5 -2.5 -6.5 -6.5 -2.5 6.5 -2.5 Z" />
+        <path d="M56 452 l2.5 6.5 6.5 2.5 -6.5 2.5 -2.5 6.5 -2.5 -6.5 -6.5 -2.5 6.5 -2.5 Z" />
+      </g>
+
+      {/* connecting arrows */}
+      <path
+        d="M108 250 C 62 288, 62 330, 108 356"
+        stroke="#14592A"
+        strokeWidth="3"
+        fill="none"
+        markerEnd="url(#arrowhead)"
+      />
+      <path
+        d="M222 418 C 280 448, 340 448, 398 420"
+        stroke="#14592A"
+        strokeWidth="3"
+        fill="none"
+        markerEnd="url(#arrowhead)"
+      />
+      <path
+        d="M196 348 C 250 300, 300 240, 358 202"
+        stroke="#8CC63E"
+        strokeWidth="3"
+        strokeDasharray="7 6"
+        fill="none"
+        markerEnd="url(#arrowhead-lime)"
+      />
+
+      {/* Households (top-left) */}
+      <circle cx="140" cy="165" r="90" fill="#EAF3E4" filter="url(#wfShadow)" />
+      <g transform="translate(140,172)">
+        <rect x="-16" y="-6" width="34" height="40" fill="#8CC63E" />
+        <path d="M-22 -6 L1 -24 L24 -6 Z" fill="#14592A" />
+        <rect x="-58" y="8" width="50" height="52" fill="#1E7F39" />
+        <path d="M-64 8 L-33 -18 L-2 8 Z" fill="#14592A" />
+        <rect x="-50" y="24" width="12" height="12" fill="#FFFFFF" />
+        <rect x="-30" y="24" width="12" height="12" fill="#FFFFFF" />
+        <rect x="-40" y="40" width="12" height="20" fill="#0E3D1D" />
+      </g>
+      <text x="140" y="45" textAnchor="middle" fontSize="15" fontWeight="700" fill="#182119">
+        {t('ຄົວເຮືອນ', 'Households')}
+      </text>
+
+      {/* Recycle (top-right) — the alternative */}
+      <circle cx="420" cy="165" r="90" fill="#E4F2CE" filter="url(#wfShadow)" />
+      <g transform="translate(420,176)">
+        <rect x="-33" y="-30" width="66" height="16" rx="5" fill="#14592A" />
+        <rect x="-27" y="-14" width="54" height="54" rx="10" fill="#8CC63E" />
+        <text x="0" y="28" fontSize="34" textAnchor="middle" fill="#FFFFFF">
+          ♻
+        </text>
+      </g>
+      <g transform="translate(478,108)">
+        <circle r="16" fill="#8CC63E" />
+        <path d="M-6 0 L-1 6 L8 -7" stroke="#0E3D1D" strokeWidth="3" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+      </g>
+      <text x="420" y="45" textAnchor="middle" fontSize="15" fontWeight="700" fill="#14592A">
+        {t('ໝູນວຽນ', 'Recycle')}
+      </text>
+
+      {/* Collection truck (bottom-left) */}
+      <circle cx="140" cy="395" r="90" fill="#EAF3E4" filter="url(#wfShadow)" />
+      <g transform="translate(140,400)">
+        <rect x="-46" y="-6" width="76" height="36" rx="4" fill="#14592A" />
+        <rect x="-42" y="-1" width="60" height="9" fill="#8CC63E" opacity=".6" />
+        <rect x="30" y="6" width="24" height="24" rx="3" fill="#1E7F39" />
+        <rect x="35" y="10" width="13" height="11" fill="#DCEAD5" />
+        <circle cx="-30" cy="32" r="11" fill="#182119" />
+        <circle cx="-30" cy="32" r="4.5" fill="#F1F5EF" />
+        <circle cx="36" cy="32" r="11" fill="#182119" />
+        <circle cx="36" cy="32" r="4.5" fill="#F1F5EF" />
+      </g>
+      <text x="140" y="508" textAnchor="middle" fontSize="15" fontWeight="700" fill="#182119">
+        {t('ລົດເກັບຂີ້ເຫຍື້ອ', 'Collection truck')}
+      </text>
+
+      {/* KM32 landfill (bottom-right) */}
+      <circle cx="420" cy="395" r="90" fill="#EAF3E4" filter="url(#wfShadow)" />
+      <g transform="translate(420,405)">
+        <path d="M-70 55 L-30 -35 L30 -35 L70 55 Z" fill="url(#wfLandfill)" />
+        <path d="M-50 55 L-18 -15 L18 -15 L50 55 Z" fill="#182119" opacity=".18" />
+        <g stroke="#DCEAD5" strokeWidth="1.5" opacity=".3">
+          <path d="M-30 25 L-6 25" />
+          <path d="M14 33 L42 33" />
+          <path d="M-10 5 L12 5" />
+        </g>
+        <rect x="-4" y="-29" width="8" height="14" fill="#4C8FE0" opacity=".85" transform="rotate(-8 0 -22)" />
+        <rect x="18" y="-23" width="10" height="10" rx="2" fill="#8FD0C9" opacity=".8" />
+        <rect x="-24" y="-27" width="9" height="12" fill="#9AA79C" opacity=".85" transform="rotate(6 -20 -21)" />
+        <g stroke="#55655A" strokeWidth="2" fill="none" opacity=".35" strokeLinecap="round">
+          <path d="M-8 -35 q6 -12 0 -24 q-6 -12 0 -24" />
+          <path d="M12 -35 q5 -10 0 -20 q-5 -10 0 -20" />
+        </g>
+      </g>
+      <text x="420" y="508" textAnchor="middle" fontSize="15" fontWeight="700" fill="#182119">
+        {t('ບ່ອນຖິ້ມ KM32', 'KM32 landfill')}
+      </text>
     </svg>
   )
 }

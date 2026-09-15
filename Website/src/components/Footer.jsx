@@ -3,14 +3,14 @@ import { FacebookIcon, GmailIcon, InstagramIcon, LogoMarkMono, TikTokIcon } from
 
 const EMAIL = 'locallowwaste.project@gmail.com'
 const INSTAGRAM = 'https://instagram.com/local_low_waste_laos'
+const FACEBOOK = 'https://www.facebook.com/share/1JoniWkvMk/?mibextid=wwXIfr'
+const TIKTOK = 'https://www.tiktok.com/@local.low.waste.l?_r=1&_t=ZS-99ke2MGm37J'
 
-/* Fill `href` in for Facebook and TikTok once those accounts exist —
-   an entry with an empty href renders dimmed instead of as a dead link. */
 const SOCIAL = [
   { name: 'Gmail', label: EMAIL, href: `mailto:${EMAIL}`, Icon: GmailIcon },
-  { name: 'Facebook', label: 'Facebook', href: '', Icon: FacebookIcon },
+  { name: 'Facebook', label: 'Facebook', href: FACEBOOK, Icon: FacebookIcon },
   { name: 'Instagram', label: '@local_low_waste_laos', href: INSTAGRAM, Icon: InstagramIcon },
-  { name: 'TikTok', label: 'TikTok', href: '', Icon: TikTokIcon },
+  { name: 'TikTok', label: 'TikTok', href: TIKTOK, Icon: TikTokIcon },
 ]
 
 export default function Footer() {
@@ -84,8 +84,14 @@ export default function Footer() {
               <a className="foot-btn" href={`mailto:${EMAIL}`}>
                 {t('ສົ່ງອີເມວ', 'Email us')}
               </a>
+              <a className="foot-btn" href={FACEBOOK} target="_blank" rel="noopener noreferrer">
+                {t('ຕິດຕາມ Facebook', 'Follow on Facebook')}
+              </a>
               <a className="foot-btn" href={INSTAGRAM} target="_blank" rel="noopener noreferrer">
                 {t('ຕິດຕາມ Instagram', 'Follow on Instagram')}
+              </a>
+              <a className="foot-btn" href={TIKTOK} target="_blank" rel="noopener noreferrer">
+                {t('ຕິດຕາມ TikTok', 'Follow on TikTok')}
               </a>
             </div>
             <p className="foot-address">{t('ນະຄອນຫຼວງວຽງຈັນ, ສປປ ລາວ', 'Vientiane Capital, Lao PDR')}</p>
